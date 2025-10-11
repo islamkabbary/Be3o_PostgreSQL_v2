@@ -19,8 +19,7 @@ return [
     'Password is required' => 'Password is required',
     'Password must be at least 6 characters' => 'Password must be at least 6 characters long',
 
-    'First name is required' => 'First name is required',
-    'Last name is required'  => 'Last name is required',
+    'name is required' => 'Name is required',
 
     // Extra
     'At least one field must be submitted.' => 'At least one field must be submitted.',

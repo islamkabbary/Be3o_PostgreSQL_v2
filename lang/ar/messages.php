@@ -19,8 +19,7 @@ return [
     'Password is required' => 'كلمة المرور مطلوبة',
     'Password must be at least 6 characters' => 'كلمة المرور يجب ألا تقل عن 6 أحرف',
 
-    'First name is required' => 'الاسم الأول مطلوب',
-    'Last name is required'  => 'اسم العائلة مطلوب',
+    'name is required' => 'الاسم مطلوب',
 
     // Extra
     'At least one field must be submitted.' => 'يجب إدخال حقل واحد على الأقل.',
