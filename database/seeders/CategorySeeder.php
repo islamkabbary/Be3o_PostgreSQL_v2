@@ -11,7 +11,7 @@ class CategorySeeder extends Seeder
     {
         $data = [
             ['name' => 'Vehicles', 'name_ar' => 'المركبات', 'slug' => 'vehicles', 'sort_order' => 1],
-            // باقي البيانات من السكيما
+            // باقي ذالبيانات من السكيما
             ['name' => 'Everything Else', 'name_ar' => 'أشياء أخرى', 'slug' => 'everything-else', 'sort_order' => 13],
         ];
 
