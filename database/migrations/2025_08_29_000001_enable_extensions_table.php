@@ -9,12 +9,12 @@ return new class extends Migration
     {
         DB::statement('CREATE EXTENSION IF NOT EXISTS "pg_trgm";');
         DB::statement('CREATE EXTENSION IF NOT EXISTS "unaccent";');
-        DB::statement('CREATE EXTENSION IF NOT EXISTS "postgis";');
+        // DB::statement('CREATE EXTENSION IF NOT EXISTS "postgis";');
     }
 
     public function down(): void
     {
-        DB::statement('DROP EXTENSION IF EXISTS "postgis";');
+        // DB::statement('DROP EXTENSION IF EXISسTS "postgis";');
         DB::statement('DROP EXTENSION IF EXISTS "unaccent";');
         DB::statement('DROP EXTENSION IF EXISTS "pg_trgm";');
     }

@@ -30,7 +30,7 @@ return new class extends Migration
             $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
 
-        DB::statement('ALTER TABLE user_addresses ADD COLUMN location geography(POINT);');
+        // DB::statement('ALTER TABLE user_addresses ADD COLUMN location geography(POINT);');
     }
 
     public function down(): void
