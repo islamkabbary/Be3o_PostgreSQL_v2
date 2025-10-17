@@ -11,7 +11,6 @@ class CategoryAttribute extends Model
 
     protected $fillable = [
         'category_id',
-        'subcategory_id',
         'name',
         'name_ar',
         'attribute_type',
@@ -31,11 +30,6 @@ class CategoryAttribute extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function subcategory()
-    {
-        return $this->belongsTo(Subcategory::class);
     }
 
     public function listingAttributes()

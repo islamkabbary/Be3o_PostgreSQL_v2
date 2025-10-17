@@ -15,7 +15,6 @@ return new class extends Migration
         DB::unprepared('CREATE OR REPLACE TRIGGER update_user_profiles_updated_at BEFORE UPDATE ON user_profiles FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
         DB::unprepared('CREATE OR REPLACE TRIGGER update_user_addresses_updated_at BEFORE UPDATE ON user_addresses FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
         DB::unprepared('CREATE OR REPLACE TRIGGER update_categories_updated_at BEFORE UPDATE ON categories FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
-        DB::unprepared('CREATE OR REPLACE TRIGGER update_subcategories_updated_at BEFORE UPDATE ON subcategories FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
         DB::unprepared('CREATE OR REPLACE TRIGGER update_category_attributes_updated_at BEFORE UPDATE ON category_attributes FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
         DB::unprepared('CREATE OR REPLACE TRIGGER update_listings_updated_at BEFORE UPDATE ON listings FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
         DB::unprepared('CREATE OR REPLACE TRIGGER update_listing_attributes_updated_at BEFORE UPDATE ON listing_attributes FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');

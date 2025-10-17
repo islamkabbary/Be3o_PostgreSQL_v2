@@ -13,8 +13,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->bigInteger('subcategory_id')->unsigned()->nullable();
-            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
             $table->string('name', 100);
             $table->string('name_ar', 100);
             $table->string('attribute_type', 20);
@@ -28,7 +26,7 @@ return new class extends Migration
         });
 
         DB::statement("ALTER TABLE category_attributes ADD CONSTRAINT chk_attribute_type CHECK (attribute_type IN ('text', 'number', 'select', 'multiselect', 'boolean', 'date', 'currency'));");
-        DB::statement('ALTER TABLE category_attributes ADD CHECK ((category_id IS NOT NULL) OR (subcategory_id IS NOT NULL));');
+        DB::statement('ALTER TABLE category_attributes ADD CHECK (category_id IS NOT NULL);');
     }
 
     public function down(): void

@@ -10,6 +10,9 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('parent_id')->unsigned()->nullable(); // parent category
+            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
+
             $table->string('name', 100);
             $table->string('name_ar', 100);
             $table->string('slug', 100)->unique();
@@ -18,10 +21,14 @@ return new class extends Migration
             $table->string('image_url', 500)->nullable();
             $table->integer('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
+            $table->boolean('requires_verification')->default(false);
+            $table->boolean('allows_negotiation')->default(true);
             $table->string('meta_title', 200)->nullable();
             $table->text('meta_description')->nullable();
             $table->timestampTz('created_at')->useCurrent();
             $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->unique(['parent_id', 'slug']);
         });
     }
 

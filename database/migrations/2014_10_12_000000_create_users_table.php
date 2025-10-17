@@ -24,11 +24,11 @@ return new class extends Migration
 
             $table->string('account_type', 20)->default('individual');
             $table->string('account_status', 20)->default('active');
-            $table->string('preferred_language', 5)->default('en');
 
             $table->timestamp('last_login_at')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->softDeletes();
         });
 
         DB::statement("ALTER TABLE users ADD CONSTRAINT chk_gender CHECK (gender IN ('male', 'female', 'other'));");

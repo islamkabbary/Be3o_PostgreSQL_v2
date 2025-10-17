@@ -11,7 +11,6 @@ class ListingFactory extends Factory
         return [
             'user_id' => \App\Models\User::factory(),
             'category_id' => \App\Models\Category::factory(),
-            'subcategory_id' => \App\Models\Subcategory::factory(),
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
             'price' => $this->faker->randomFloat(2, 100, 10000),

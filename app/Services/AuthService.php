@@ -2,13 +2,16 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Resources\UserResource;
 use App\Interfaces\UserRepositoryInterface;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class AuthService
 {
@@ -25,19 +28,22 @@ class AuthService
         return $this->userRepository->create($data);
     }
 
-    public function login(array $credentials): string
+    public function login(array $credentials): array
     {
         if (!Auth::attempt($credentials)) {
-            throw new \Exception(__('messages.Invalid credentials'), 401);
+            throw new UnauthorizedHttpException('', __('messages.Invalid credentials'));
         }
 
         $user = Auth::user();
 
         if (!$user->email_verified_at) {
-            throw new \Exception(__('messages.Please verify your email first'), 403);
+            throw new AccessDeniedHttpException(__('messages.Please verify your email first'));
         }
 
-        return $user->createToken('api_token')->plainTextToken;
+        return [
+            'token' => $user->createToken('api_token')->plainTextToken,
+            'user' => new UserResource($user),
+        ];
     }
 
     public function findByEmail(string $email): ?User

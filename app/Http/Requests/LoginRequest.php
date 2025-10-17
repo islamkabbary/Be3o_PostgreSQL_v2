@@ -8,7 +8,7 @@ class LoginRequest extends AbstractFormRequest
     {
         return [
             'email'    => 'required|email',
-            'password' => 'required|string',
+            'password' => 'required',
         ];
     }
 
@@ -18,7 +18,7 @@ class LoginRequest extends AbstractFormRequest
             'email.required'    => __('messages.Email is required'),
             'email.email'       => __('messages.Email must be a valid email'),
 
-            'password.required' => __('messages.Password is required'),
+            'password.required' => __(key: 'messages.Password is required'),
         ];
     }
 }

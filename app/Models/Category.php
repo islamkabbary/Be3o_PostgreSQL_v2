@@ -10,6 +10,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
+        'parent_id',
         'name',
         'name_ar',
         'slug',
@@ -18,13 +19,20 @@ class Category extends Model
         'image_url',
         'sort_order',
         'is_active',
+        'requires_verification',
+        'allows_negotiation',
         'meta_title',
         'meta_description',
     ];
 
-    public function subcategories()
+    public function parent()
     {
-        return $this->hasMany(Subcategory::class);
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
     }
 
     public function categoryAttributes()

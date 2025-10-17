@@ -15,7 +15,6 @@ return new class extends Migration
 
         // Listing table indexes
         DB::statement('CREATE INDEX idx_listings_user_id ON listings(user_id);');
-        DB::statement('CREATE INDEX idx_listings_category_subcategory ON listings(category_id, subcategory_id);');
         DB::statement('CREATE INDEX idx_listings_status ON listings(status);');
         DB::statement('CREATE INDEX idx_listings_location ON listings(governorate, city, area);');
         DB::statement('CREATE INDEX idx_listings_price ON listings(price);');
@@ -80,7 +79,6 @@ return new class extends Migration
         DB::statement('DROP INDEX IF EXISTS idx_listings_price;');
         DB::statement('DROP INDEX IF EXISTS idx_listings_location;');
         DB::statement('DROP INDEX IF EXISTS idx_listings_status;');
-        DB::statement('DROP INDEX IF EXISTS idx_listings_category_subcategory;');
         DB::statement('DROP INDEX IF EXISTS idx_listings_user_id;');
         DB::statement('DROP INDEX IF EXISTS idx_users_created_at;');
         DB::statement('DROP INDEX IF EXISTS idx_users_account_status;');

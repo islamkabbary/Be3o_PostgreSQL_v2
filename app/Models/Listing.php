@@ -12,7 +12,6 @@ class Listing extends Model
     protected $fillable = [
         'user_id',
         'category_id',
-        'subcategory_id',
         'title',
         'description',
         'price',
@@ -49,11 +48,6 @@ class Listing extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function subcategory()
-    {
-        return $this->belongsTo(Subcategory::class);
     }
 
     public function listingAttributes()

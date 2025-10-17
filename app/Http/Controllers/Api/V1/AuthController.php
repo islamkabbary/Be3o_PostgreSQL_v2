@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\UserResource;
 use App\Services\AuthService;
 use App\Services\VerificationService;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class AuthController extends Controller
     {
         $user = $this->authService->register($request->validated());
         $this->verificationService->create($user, 'email');
-        return $this->success($user, 'messages.User registered successfully', 201);
+        return $this->success(["user" => new UserResource($user)], 'messages.User registered successfully', 201);
     }
 
     /**
@@ -77,13 +78,9 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $token = $this->authService->login($request->validated());
+        $data = $this->authService->login($request->validated());
 
-        if (!$token) {
-            return $this->error([], __('messages.Invalid credentials'), 401);
-        }
-
-        return $this->success(['token' => $token], __('messages.Login successful'));
+        return $this->success($data, __('messages.Login successful'));
     }
 
     /**
