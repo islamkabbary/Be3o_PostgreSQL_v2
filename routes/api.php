@@ -67,4 +67,11 @@ Route::prefix('v1')->group(function () {
     
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('categories/{id}/children', [CategoryController::class, 'children']);
+    Route::get('/categories/{id}/attributes', [CategoryController::class, 'listAttributes']);
+
+
+
+
+
+    Route::get('/listings', [CategoryController::class, 'listAttributes']);
 });

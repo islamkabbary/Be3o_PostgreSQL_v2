@@ -36,9 +36,9 @@ class AuthService
 
         $user = Auth::user();
 
-        if (!$user->email_verified_at) {
-            throw new AccessDeniedHttpException(__('messages.Please verify your email first'));
-        }
+        // if (!$user->email_verified_at) {
+        //     throw new AccessDeniedHttpException(__('messages.Please verify your email first'));
+        // }
 
         return [
             'token' => $user->createToken('api_token')->plainTextToken,

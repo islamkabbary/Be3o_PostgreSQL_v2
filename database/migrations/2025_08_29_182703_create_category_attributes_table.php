@@ -22,7 +22,7 @@ return new class extends Migration
             $table->jsonb('options')->nullable();
             $table->jsonb('validation_rules')->nullable();
             $table->integer('sort_order')->default(0);
-            $table->timestampTz('created_at')->useCurrent();
+            $table->timestamps();
         });
 
         DB::statement("ALTER TABLE category_attributes ADD CONSTRAINT chk_attribute_type CHECK (attribute_type IN ('text', 'number', 'select', 'multiselect', 'boolean', 'date', 'currency'));");

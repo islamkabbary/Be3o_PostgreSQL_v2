@@ -10,4 +10,5 @@ interface CategoryRepositoryInterface
 {
     public function getAllActive();
     public function getCategoryWithChildren(int $id): ?Category;
+    public function getAttributes(int $categoryId);
 }

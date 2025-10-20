@@ -28,4 +28,9 @@ class CategoryService
     {
         return $this->categoryRepository->getCategoryWithChildren($id);
     }
+
+        public function listAttributes(int $categoryId)
+    {
+        return $this->categoryRepository->getAttributes($categoryId);
+    }
 }
