@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class CategoryAttribute extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'category_id',
         'name',
-        'name_ar',
         'attribute_type',
         'is_required',
         'is_searchable',
@@ -22,6 +22,7 @@ class CategoryAttribute extends Model
         'sort_order',
     ];
 
+    public $translatable = ['name'];
     protected $casts = [
         'options' => 'array',
         'validation_rules' => 'array',

@@ -12,11 +12,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('parent_id')->unsigned()->nullable(); // parent category
             $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
-
-            $table->string('name', 100);
-            $table->string('name_ar', 100);
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->string('slug', 100)->unique();
-            $table->text('description')->nullable();
             $table->string('icon_url', 500)->nullable();
             $table->string('image_url', 500)->nullable();
             $table->integer('sort_order')->default(0);

@@ -24,21 +24,23 @@ class CategoryRepository implements CategoryRepositoryInterface
         return Category::with('children')->find($id);
     }
 
-    public function getAttributes(int $categoryId)
+    // في الخدمة CategoryService
+    public function getAttributes(int $categoryId): array
     {
-        $category = Category::with('attributes')->find($categoryId);
+        $attributes = CategoryAttribute::where('category_id', $categoryId)
+            ->select('id', 'name', 'attribute_type', 'options', 'is_required')
+            ->get();
 
-        if (!$category) {
-            return [];
+        if ($attributes->isEmpty()) {
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException();
         }
 
-        return $category->attributes->map(fn($attr) => [
+        return $attributes->map(fn($attr) => [
             'id' => $attr->id,
-            'name' => $attr->name,
-            'name_ar' => $attr->name_ar,
+            'name' => $attr->getTranslations('name'), 
             'type' => $attr->attribute_type,
             'options' => $attr->options ?? [],
-            'is_required' => $attr->is_required,
+            'is_required' => (bool) $attr->is_required,
         ])->toArray();
     }
 }

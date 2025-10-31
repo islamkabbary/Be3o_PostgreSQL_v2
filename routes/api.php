@@ -1,9 +1,15 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AdvertisementController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Middleware\CorsMiddleware;
+use App\Http\Middleware\SetLanguageMiddleware;
 use Illuminate\Support\Facades\Route;
+
+
+
 
 
 /*
@@ -17,19 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('v1')->group(function () {
-
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Routes
-    |--------------------------------------------------------------------------
-    |
-    | Routes related to user registration, login, logout,
-    | email verification, and password recovery.
-    |
-    | Throttling is applied to prevent brute-force attacks.
-    |
-    */
+Route::prefix('v1')->middleware([CorsMiddleware::class, SetLanguageMiddleware::class, 'throttle:60,1'])->group(function () {
     Route::prefix('auth')->group(function () {
 
         // ─── Registration & Login ────────────────────────────────────────────────
@@ -49,29 +43,19 @@ Route::prefix('v1')->group(function () {
             ->middleware('throttle:5,1');
         Route::post('reset-password', [AuthController::class, 'resetPassword']);
     });
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | User Profile Routes
-    |--------------------------------------------------------------------------
-    |
-    | Protected routes for managing the authenticated user's profile.
-    | Includes profile retrieval, updates, and avatar upload.
-    |
-    */
-    Route::middleware('auth:sanctum')->prefix('user')->group(function () {
-        Route::get('profile', [UserController::class, 'profile']);
-        Route::put('profile', [UserController::class, 'updateProfile']);
-    });
     
+    // Category
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('categories/{id}/children', [CategoryController::class, 'children']);
-    Route::get('/categories/{id}/attributes', [CategoryController::class, 'listAttributes']);
 
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/user/profile', [UserController::class, 'profile']);
+        Route::put('/user/profile', [UserController::class, 'updateProfile']);
 
+        // Category
+        Route::get('/categories/{id}/attributes', [CategoryController::class, 'listAttributes']);
 
-
-
-    Route::get('/listings', [CategoryController::class, 'listAttributes']);
+        // ADS
+        Route::Post('/create-ads', [AdvertisementController::class, 'createAds']);
+    });
 });

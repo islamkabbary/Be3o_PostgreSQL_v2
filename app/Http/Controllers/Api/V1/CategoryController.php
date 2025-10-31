@@ -41,15 +41,15 @@ class CategoryController extends Controller
 
     public function listAttributes(int $id): JsonResponse
     {
-        $attributes = $this->categoryService->listAttributes($id);
+        try {
+            $attributes = $this->categoryService->listAttributes($id);
 
-        if (empty($attributes)) {
+            return $this->success([
+                'category_id' => $id,
+                'attributes' => $attributes,
+            ], __('Category attributes fetched successfully'));
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return $this->error([], __('Category not found or has no attributes'), 404);
         }
-
-        return $this->success([
-            'category_id' => $id,
-            'attributes' => $attributes,
-        ], __('Category attributes fetched successfully'));
     }
 }

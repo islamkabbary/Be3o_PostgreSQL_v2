@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Interfaces\CategoryRepositoryInterface;
 use App\Models\Category;
-use Illuminate\Support\Collection;
 
 class CategoryService
 {
@@ -29,7 +28,7 @@ class CategoryService
         return $this->categoryRepository->getCategoryWithChildren($id);
     }
 
-        public function listAttributes(int $categoryId)
+    public function listAttributes(int $categoryId)
     {
         return $this->categoryRepository->getAttributes($categoryId);
     }

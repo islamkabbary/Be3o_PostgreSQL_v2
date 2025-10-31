@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'parent_id',
         'name',
-        'name_ar',
         'slug',
         'description',
         'icon_url',
@@ -24,6 +24,8 @@ class Category extends Model
         'meta_title',
         'meta_description',
     ];
+
+    public $translatable = ['name', 'description', 'meta_title', 'meta_description'];
 
     public function parent()
     {
