@@ -28,8 +28,8 @@ return new class extends Migration
         DB::statement('CREATE INDEX idx_listings_description_gin ON listings USING gin(to_tsvector(\'arabic\', description));');
 
         // Spatial indexes
-        // DB::statement('CREATE INDEX idx_listings_location_gist ON listings USING gist(location);');
-        // DB::statement('CREATE INDEX idx_user_addresses_location_gist ON user_addresses USING gist(location);');
+        DB::statement('CREATE INDEX idx_listings_location_gist ON listings USING gist(location);');
+        DB::statement('CREATE INDEX idx_user_addresses_location_gist ON user_addresses USING gist(location);');
 
         // Message system indexes
         DB::statement('CREATE INDEX idx_conversations_buyer_seller ON conversations(buyer_id, seller_id);');

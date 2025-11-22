@@ -45,10 +45,10 @@ return new class extends Migration
             $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
 
-        // DB::statement("ALTER TABLE listings ADD COLUMN location geography(POINT);");
-        // DB::statement("ALTER TABLE listings ADD CONSTRAINT chk_condition CHECK (condition IN ('new', 'used', 'refurbished'));");
-        // DB::statement("ALTER TABLE listings ADD CONSTRAINT chk_status CHECK (status IN ('draft', 'active', 'sold', 'expired', 'removed', 'suspended'));");
-        // DB::statement("ALTER TABLE listings ADD CONSTRAINT chk_listing_type CHECK (listing_type IN ('sell', 'rent', 'exchange', 'wanted'));");
+        DB::statement("ALTER TABLE listings ADD COLUMN location geography(POINT);");
+        DB::statement("ALTER TABLE listings ADD CONSTRAINT chk_condition CHECK (condition IN ('new', 'used', 'refurbished'));");
+        DB::statement("ALTER TABLE listings ADD CONSTRAINT chk_status CHECK (status IN ('draft', 'active', 'sold', 'expired', 'removed', 'suspended'));");
+        DB::statement("ALTER TABLE listings ADD CONSTRAINT chk_listing_type CHECK (listing_type IN ('sell', 'rent', 'exchange', 'wanted'));");
     }
 
     public function down(): void
