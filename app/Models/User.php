@@ -41,10 +41,7 @@ class User extends Authenticatable
         return $this->hasMany(Favorite::class);
     }
 
-    public function savedSearches()
-    {
-        return $this->hasMany(SavedSearch::class);
-    }
+
 
     public function reviewsAsReviewer()
     {
@@ -61,40 +58,21 @@ class User extends Authenticatable
         return $this->hasMany(ReviewVote::class);
     }
 
-    public function ordersAsBuyer()
-    {
-        return $this->hasMany(Order::class, 'buyer_id');
-    }
 
-    public function ordersAsSeller()
-    {
-        return $this->hasMany(Order::class, 'seller_id');
-    }
 
     public function notifications()
     {
         return $this->hasMany(Notification::class);
     }
 
-    public function reportsAsReporter()
-    {
-        return $this->hasMany(Report::class, 'reporter_id');
-    }
 
-    public function reportsAsReported()
-    {
-        return $this->hasMany(Report::class, 'reported_user_id');
-    }
 
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
     }
 
-    public function userActivityLogs()
-    {
-        return $this->hasMany(UserActivityLog::class);
-    }
+
 
     public function conversationsAsBuyer()
     {

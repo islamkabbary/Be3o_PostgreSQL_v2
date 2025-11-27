@@ -22,7 +22,7 @@ return new class extends Migration
         DB::unprepared('CREATE OR REPLACE TRIGGER update_conversations_updated_at BEFORE UPDATE ON conversations FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
         DB::unprepared('CREATE OR REPLACE TRIGGER update_messages_updated_at BEFORE UPDATE ON messages FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
         DB::unprepared('CREATE OR REPLACE TRIGGER update_favorites_updated_at BEFORE UPDATE ON favorites FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
-        DB::unprepared('CREATE OR REPLACE TRIGGER update_saved_searches_updated_at BEFORE UPDATE ON saved_searches FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
+        // تم حذف trigger لجدول saved_searches (Model محذوف)
         DB::unprepared('CREATE OR REPLACE TRIGGER update_reviews_updated_at BEFORE UPDATE ON reviews FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
         DB::unprepared('CREATE OR REPLACE TRIGGER update_review_votes_updated_at BEFORE UPDATE ON review_votes FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
         DB::unprepared('CREATE OR REPLACE TRIGGER update_notifications_updated_at BEFORE UPDATE ON notifications FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();');
