@@ -31,9 +31,9 @@ class User extends Authenticatable
         return $this->hasMany(UserAddress::class);
     }
 
-    public function listings()
+    public function ads()
     {
-        return $this->hasMany(Listing::class);
+        return $this->hasMany(Ad::class);
     }
 
     public function favorites()

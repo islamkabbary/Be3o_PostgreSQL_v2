@@ -10,16 +10,16 @@ class Conversation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'listing_id',
+        'ad_id',
         'buyer_id',
         'seller_id',
         'status',
         'last_message_at',
     ];
 
-    public function listing()
+    public function ad()
     {
-        return $this->belongsTo(Listing::class);
+        return $this->belongsTo(Ad::class);
     }
 
     public function buyer()

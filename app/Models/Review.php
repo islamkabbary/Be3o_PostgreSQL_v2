@@ -12,7 +12,7 @@ class Review extends Model
     protected $fillable = [
         'reviewer_id',
         'reviewee_id',
-        'listing_id',
+        'ad_id',
         'rating',
         'title',
         'comment',
@@ -33,9 +33,9 @@ class Review extends Model
         return $this->belongsTo(User::class, 'reviewee_id');
     }
 
-    public function listing()
+    public function ad()
     {
-        return $this->belongsTo(Listing::class);
+        return $this->belongsTo(Ad::class);
     }
 
     public function reviewVotes()

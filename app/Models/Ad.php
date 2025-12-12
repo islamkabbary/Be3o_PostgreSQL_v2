@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Listing extends Model
+class Ad extends Model
 {
     use HasFactory;
 
@@ -25,7 +25,7 @@ class Listing extends Model
         'latitude',
         'longitude',
         'status',
-        'listing_type',
+        'ad_type',
         'is_featured',
         'is_urgent',
         'is_premium',
@@ -50,14 +50,14 @@ class Listing extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function listingAttributes()
+    public function attributes()
     {
-        return $this->hasMany(ListingAttribute::class);
+        return $this->hasMany(AdAttribute::class);
     }
 
-    public function listingImages()
+    public function images()
     {
-        return $this->hasMany(ListingImage::class);
+        return $this->hasMany(AdImage::class);
     }
 
     public function conversations()

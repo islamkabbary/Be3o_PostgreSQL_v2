@@ -18,11 +18,11 @@ return new class extends Migration
             $table->decimal('default_cost', 12, 2)->nullable();
             $table->string('billing_cycle', 20)->nullable();
             $table->jsonb('features')->nullable();
-            $table->integer('max_listings')->default(0);
+            $table->integer('max_ads')->default(0);
             $table->integer('priority_level')->default(0);
             $table->boolean('is_active')->default(true);
-            $table->timestampTz('created_at')->useCurrent();
-            $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
+            
         });
 
         DB::statement("ALTER TABLE subscription_plans ADD CONSTRAINT chk_billing_cycle CHECK (billing_cycle IN ('monthly', 'yearly', 'one_time'));");

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\V1\AdvertisementController;
+use App\Http\Controllers\Api\V1\AdController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\UserController;
@@ -56,6 +56,6 @@ Route::prefix('v1')->middleware([CorsMiddleware::class, SetLanguageMiddleware::c
         Route::get('/categories/{id}/attributes', [CategoryController::class, 'listAttributes']);
 
         // ADS
-        Route::Post('/create-ads', [AdvertisementController::class, 'createAds']);
+        Route::Post('/create-ads', [AdController::class, 'store']);
     });
 });

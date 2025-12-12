@@ -9,7 +9,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('listings', function (Blueprint $table) {
+        Schema::create('ads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -19,8 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 12, 2)->nullable();
             $table->string('currency', 3)->default('EGP');
-            $table->boolean('price_negotiable')->default(true);
-            $table->string('condition', 20)->nullable();
+            $table->enum('condition', ["new",'used'])->default("used");
             $table->string('country', 100)->default('Egypt');
             $table->string('governorate', 100);
             $table->string('city', 100);
@@ -28,7 +27,7 @@ return new class extends Migration
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
             $table->string('status', 20)->default('draft');
-            $table->string('listing_type', 20)->default('sell');
+            $table->string('ad_type', 20)->default('sell');
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_urgent')->default(false);
             $table->boolean('is_premium')->default(false);
@@ -41,18 +40,18 @@ return new class extends Migration
             $table->text('meta_description')->nullable();
             $table->timestampTz('published_at')->nullable();
             $table->timestampTz('expires_at')->nullable();
-            $table->timestampTz('created_at')->useCurrent();
-            $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
+            
         });
 
-        DB::statement("ALTER TABLE listings ADD COLUMN location geography(POINT);");
-        DB::statement("ALTER TABLE listings ADD CONSTRAINT chk_condition CHECK (condition IN ('new', 'used', 'refurbished'));");
-        DB::statement("ALTER TABLE listings ADD CONSTRAINT chk_status CHECK (status IN ('draft', 'active', 'sold', 'expired', 'removed', 'suspended'));");
-        DB::statement("ALTER TABLE listings ADD CONSTRAINT chk_listing_type CHECK (listing_type IN ('sell', 'rent', 'exchange', 'wanted'));");
+        DB::statement("ALTER TABLE ads ADD COLUMN location geography(POINT);");
+        DB::statement("ALTER TABLE ads ADD CONSTRAINT chk_condition CHECK (condition IN ('new', 'used', 'refurbished'));");
+        DB::statement("ALTER TABLE ads ADD CONSTRAINT chk_status CHECK (status IN ('draft', 'active', 'sold', 'expired', 'removed', 'suspended'));");
+        DB::statement("ALTER TABLE ads ADD CONSTRAINT chk_ad_type CHECK (ad_type IN ('sell', 'rent', 'exchange', 'wanted'));");
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('listings');
+        Schema::dropIfExists('ads');
     }
 };

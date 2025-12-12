@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ListingAttribute extends Model
+class AdAttribute extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'listing_id',
+        'ad_id',
         'attribute_id',
         'value_text',
         'value_number',
@@ -23,9 +23,9 @@ class ListingAttribute extends Model
         'value_json' => 'array',
     ];
 
-    public function listing()
+    public function ad()
     {
-        return $this->belongsTo(Listing::class);
+        return $this->belongsTo(Ad::class);
     }
 
     public function attribute()

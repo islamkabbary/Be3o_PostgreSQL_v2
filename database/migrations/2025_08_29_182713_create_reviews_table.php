@@ -15,8 +15,8 @@ return new class extends Migration
             $table->foreign('reviewer_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('reviewee_id')->unsigned();
             $table->foreign('reviewee_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('listing_id')->unsigned()->nullable();
-            $table->foreign('listing_id')->references('id')->on('listings')->onDelete('set null');
+            $table->bigInteger('ad_id')->unsigned()->nullable();
+            $table->foreign('ad_id')->references('id')->on('ads')->onDelete('set null');
             $table->integer('rating');
             $table->string('title', 255)->nullable();
             $table->text('comment')->nullable();
@@ -25,9 +25,9 @@ return new class extends Migration
             $table->boolean('is_anonymous')->default(false);
             $table->string('status', 20)->default('published');
             $table->integer('helpful_count')->default(0);
-            $table->timestampTz('created_at')->useCurrent();
-            $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
-            $table->unique(['reviewer_id', 'reviewee_id', 'listing_id']);
+            $table->timestamps();
+            
+            $table->unique(['reviewer_id', 'reviewee_id', 'ad_id']);
         });
 
         DB::statement("ALTER TABLE reviews ADD CONSTRAINT chk_rating CHECK (rating BETWEEN 1 AND 5);");

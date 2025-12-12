@@ -18,7 +18,7 @@ return new class extends Migration
             $table->jsonb('permissions')->default('{}');
             $table->boolean('is_active')->default(true);
             $table->timestampTz('last_login_at')->nullable();
-            $table->timestampTz('created_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('delivery_method', 20)->nullable();
             $table->timestampTz('sent_at')->nullable();
             $table->timestampTz('read_at')->nullable();
-            $table->timestampTz('created_at')->useCurrent();
+            $table->timestamps();
         });
 
         DB::statement("ALTER TABLE notifications ADD CONSTRAINT chk_delivery_method CHECK (delivery_method IN ('push', 'email', 'sms', 'in_app'));");

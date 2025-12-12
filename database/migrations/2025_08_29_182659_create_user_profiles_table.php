@@ -27,8 +27,8 @@ return new class extends Migration
             $table->boolean('notification_push')->default(true);
             $table->boolean('privacy_show_phone')->default(true);
             $table->boolean('privacy_show_email')->default(false);
-            $table->timestampTz('created_at')->useCurrent();
-            $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
+            
             $table->unique('user_id');
         });
     }

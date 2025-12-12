@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('data_type', 20)->default('string');
             $table->text('description')->nullable();
             $table->boolean('is_public')->default(false);
-            $table->timestampTz('created_at')->useCurrent();
-            $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
+            
         });
 
         DB::statement("ALTER TABLE settings ADD CONSTRAINT chk_data_type CHECK (data_type IN ('string', 'integer', 'boolean', 'json'));");

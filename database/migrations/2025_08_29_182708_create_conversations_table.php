@@ -11,16 +11,16 @@ return new class extends Migration
     {
         Schema::create('conversations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('listing_id')->unsigned();
-            $table->foreign('listing_id')->references('id')->on('listings')->onDelete('cascade');
+            $table->bigInteger('ad_id')->unsigned();
+            $table->foreign('ad_id')->references('id')->on('ads')->onDelete('cascade');
             $table->bigInteger('buyer_id')->unsigned();
             $table->foreign('buyer_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('seller_id')->unsigned();
             $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status', 20)->default('active');
             $table->timestampTz('last_message_at')->nullable();
-            $table->timestampTz('created_at')->useCurrent();
-            $table->unique(['listing_id', 'buyer_id', 'seller_id']);
+            $table->timestamps();
+            $table->unique(['ad_id', 'buyer_id', 'seller_id']);
         });
 
         DB::statement("ALTER TABLE conversations ADD CONSTRAINT chk_status CHECK (status IN ('active', 'archived', 'blocked'));");

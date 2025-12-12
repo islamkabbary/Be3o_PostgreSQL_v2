@@ -26,8 +26,8 @@ return new class extends Migration
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
             $table->boolean('is_primary')->default(false);
-            $table->timestampTz('created_at')->useCurrent();
-            $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
+            
         });
 
         DB::statement('ALTER TABLE user_addresses ADD COLUMN location geography(POINT);');

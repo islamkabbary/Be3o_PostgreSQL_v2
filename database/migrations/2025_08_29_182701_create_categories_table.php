@@ -10,10 +10,9 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('parent_id')->unsigned()->nullable(); // parent category
-            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('name');
-            $table->string('description')->nullable();
+            $table->foreignId('parent_id')->nullable()->constrained("categories")->unsigned()->nullable(); // parent category
+            $table->jsonb('name');
+            $table->jsonb('description')->nullable();
             $table->string('slug', 100)->unique();
             $table->string('icon_url', 500)->nullable();
             $table->string('image_url', 500)->nullable();
@@ -21,10 +20,10 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->boolean('requires_verification')->default(false);
             $table->boolean('allows_negotiation')->default(true);
-            $table->string('meta_title', 200)->nullable();
-            $table->text('meta_description')->nullable();
-            $table->timestampTz('created_at')->useCurrent();
-            $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->jsonb('meta_title')->nullable();
+            $table->jsonb('meta_description')->nullable();
+            $table->timestamps();
+            
 
             $table->unique(['parent_id', 'slug']);
         });

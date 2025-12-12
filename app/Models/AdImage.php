@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ListingImage extends Model
+class AdImage extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'listing_id',
+        'ad_id',
         'image_url',
         'thumbnail_url',
         'alt_text',
@@ -21,8 +21,8 @@ class ListingImage extends Model
         'image_height',
     ];
 
-    public function listing()
+    public function ad()
     {
-        return $this->belongsTo(Listing::class);
+        return $this->belongsTo(Ad::class);
     }
 }

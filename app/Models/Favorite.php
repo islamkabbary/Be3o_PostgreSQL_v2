@@ -11,7 +11,7 @@ class Favorite extends Model
 
     protected $fillable = [
         'user_id',
-        'listing_id',
+        'ad_id',
     ];
 
     public function user()
@@ -19,8 +19,8 @@ class Favorite extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function listing()
+    public function ad()
     {
-        return $this->belongsTo(Listing::class);
+        return $this->belongsTo(Ad::class);
     }
 }

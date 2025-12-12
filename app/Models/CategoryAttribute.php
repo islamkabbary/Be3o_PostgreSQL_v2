@@ -28,13 +28,13 @@ class CategoryAttribute extends Model
         'validation_rules' => 'array',
     ];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class, 'category_attribute');
     }
 
-    public function listingAttributes()
+    public function adAttributes()
     {
-        return $this->hasMany(ListingAttribute::class, 'attribute_id');
+        return $this->hasMany(AdAttribute::class, 'attribute_id');
     }
 }

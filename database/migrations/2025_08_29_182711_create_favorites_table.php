@@ -12,10 +12,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('listing_id')->unsigned();
-            $table->foreign('listing_id')->references('id')->on('listings')->onDelete('cascade');
-            $table->timestampTz('created_at')->useCurrent();
-            $table->unique(['user_id', 'listing_id']);
+            $table->bigInteger('ad_id')->unsigned();
+            $table->foreign('ad_id')->references('id')->on('ads')->onDelete('cascade');
+            $table->timestamps();
+            $table->unique(['user_id', 'ad_id']);
         });
     }
 

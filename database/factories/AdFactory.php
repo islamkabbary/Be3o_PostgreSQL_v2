@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ListingFactory extends Factory
+class AdFactory extends Factory
 {
     public function definition()
     {
@@ -24,7 +24,7 @@ class ListingFactory extends Factory
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
             'status' => $this->faker->randomElement(['draft', 'active', 'sold', 'expired', 'removed', 'suspended']),
-            'listing_type' => $this->faker->randomElement(['sell', 'rent', 'exchange', 'wanted']),
+            'ad_type' => $this->faker->randomElement(['sell', 'rent', 'exchange', 'wanted']),
             'is_featured' => $this->faker->boolean,
             'is_urgent' => $this->faker->boolean,
             'is_premium' => $this->faker->boolean,

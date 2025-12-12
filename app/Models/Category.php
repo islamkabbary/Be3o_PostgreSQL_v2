@@ -39,11 +39,11 @@ class Category extends Model
 
     public function attributes()
     {
-        return $this->hasMany(CategoryAttribute::class);
+        return $this->belongsToMany(CategoryAttribute::class, 'category_attribute');
     }
 
-    public function listings()
+    public function ads()
     {
-        return $this->hasMany(Listing::class);
+        return $this->hasMany(Ad::class);
     }
 }

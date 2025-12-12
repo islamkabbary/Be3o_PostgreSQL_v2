@@ -17,7 +17,7 @@ class SubscriptionPlan extends Model
         'default_cost',
         'billing_cycle',
         'features',
-        'max_listings',
+        'max_ads',
         'priority_level',
         'is_active',
     ];

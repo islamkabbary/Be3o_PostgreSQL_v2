@@ -26,8 +26,8 @@ return new class extends Migration
             $table->text('reason')->nullable();
             $table->text('payment_method_note')->nullable();
             $table->text('notes')->nullable();
-            $table->timestampTz('created_at')->useCurrent();
-            $table->timestampTz('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
+            
             $table->unique(['user_id', 'plan_id']);
         });
 
